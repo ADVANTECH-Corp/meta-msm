@@ -29,11 +29,12 @@ KERNEL_EXTRA_ARGS        += "O=${B}"
 
 #PACKAGE_ARCH = "${MACHINE_ARCH}"
 FILESPATH =+ "${WORKSPACE}:"
-SRC_URI   =  "file://kernel"
-SRC_DIR   =  "${WORKSPACE}/kernel"
-S         =  "${WORKDIR}/kernel"
-GITVER    =  "${@base_get_metadata_git_revision('${SRC_DIR}',d)}"
-PV = "git-${GITVER}"
+# [Advantech] Get kernel source from GitHub
+SRCBRANCH =  "LA.BR.1.2.9"
+SRC_URI   =  "git://github.com/ADVANTECH-Corp/linux-quic.git;protocol=https;branch=${SRCBRANCH}"
+SRCREV    =  "${AUTOREV}"
+S         =  "${WORKDIR}/git"
+PV = "git-${SRCPV}"
 PR = "r3"
 
 DEPENDS += "dtbtool-native mkbootimg-native"

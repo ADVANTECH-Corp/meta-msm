@@ -13,4 +13,8 @@ IMAGE_INITSCRIPTS = ""
 
 inherit core-image
 
+# [Advantech] Change root password for development
+inherit extrausers
+EXTRA_USERS_PARAMS = "usermod -P p@ssw0rd root;"
+
 MULTILIBRE_ALLOW_REP =. "/usr/include/python2.7/*|${base_bindir}|${base_sbindir}|${bindir}|${sbindir}|${libexecdir}|${sysconfdir}|${nonarch_base_libdir}/udev|/lib/modules/[^/]*/modules.*|"
